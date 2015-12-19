@@ -3,8 +3,8 @@ set -eu
 set -o pipefail
 
 build() {
-ghcjs Main.hs -fforce-recomp -Wall -O1 -fignore-interface-pragmas "$@"
+ghcjs Main.hs -fforce-recomp -Wall -O1 -fignore-interface-pragmas -DGHCJS_GC_INTERVAL=-1 -DGHCJS_SCHED_CHECK="(scheduled=0,3)" -DGHCJS_SCHED_DEBUG=1 -DGHCJS_SCHED_QUANTUM=1 "$@"
 }
 
 build -DWORKING -o working.jsexe "$@"
-build -o broken.jsexe -DGHCJS_GC_INTERVAL=-1 -DGHCJS_SCHED_CHECK="(scheduled=0,3)" -DGHCJS_SCHED_DEBUG=1 -DGHCJS_SCHED_QUANTUM=1 "$@"
+build -o broken.jsexe "$@"
