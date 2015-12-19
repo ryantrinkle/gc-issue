@@ -3,7 +3,7 @@ set -eu
 set -o pipefail
 
 build() {
-ghcjs Main.hs -fforce-recomp -Wall -O1 -fno-case-merge -fno-call-arity -fno-cmm-elim-common-blocks -fno-cmm-sink -fno-cse -fno-dmd-tx-dict-sel -fno-do-eta-reduction -fno-ignore-asserts -fno-loopification -fno-omit-yields -fno-specialise -fno-strictness -fno-unbox-small-strict-fields -fno-unbox-strict-fields -fno-vectorisation-avoidance -fignore-interface-pragmas -fomit-interface-pragmas -fno-enable-rewrite-rules -fdo-lambda-eta-expansion -ffloat-in -ffull-laziness "$@"
+ghcjs Main.hs -fforce-recomp -Wall -O1 -fignore-interface-pragmas "$@"
 }
 
 build -DWORKING -o working.jsexe "$@"
